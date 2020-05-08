@@ -14,7 +14,20 @@ test("form shows success message on submit with form details", () => {
     const {getByLabelText, getByRole, getByTestId} = render(<CheckoutForm />);
 
     const first = getByLabelText(/first name/i)
+    const last = getByLabelText(/last name/i)
+    const address = getByLabelText(/address/i)
+    const city = getByLabelText(/city/i)
+    const state = getByLabelText(/state/i)
+    const zip = getByTestId(/zip/)
+
     fireEvent.change(first, { target: {value: 'Nick'}})
+    fireEvent.change(last, { target: {value: 'Ohman'}})
+    fireEvent.change(address, { target: {value: '2210 wow st'}})
+    fireEvent.change(city, { target: {value: 'Fargo'}})
+    fireEvent.change(state, { target: {value: 'ND'}})
+    fireEvent.change(zip, { target: {value: '58102'}})
+    
+
     const submit = getByRole('button');
     fireEvent.click(submit);
     const success = getByTestId(/successMessage/i)
