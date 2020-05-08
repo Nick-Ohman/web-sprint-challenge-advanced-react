@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, getByTestId } from "@testing-library/react";
 import CheckoutForm from "./CheckoutForm";
 
 // Write up the two tests here and make sure they are testing what the title shows
@@ -10,4 +10,14 @@ test("form header renders", () => {
         expect(header).toBeInTheDocument();  
 });
 
-test("form shows success message on submit with form details", () => {});
+test("form shows success message on submit with form details", () => {
+    const {getByLabelText, getByRole, getByTestId} = render(<CheckoutForm />);
+
+    const first = getByLabelText(/first name/i)
+    fireEvent.change(first, { target: {value: 'Nick'}})
+    const submit = getByRole('button');
+    fireEvent.click(submit);
+    const success = getByTestId(/successMessage/i)
+    expect(success).toBeInTheDocument();
+
+});

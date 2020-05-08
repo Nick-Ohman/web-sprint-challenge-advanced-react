@@ -17,7 +17,7 @@ const initialValue = {
 
 const CheckoutForm = (props) => {
  
-  const [values, setValues, handleChanges] = useForm(initialValue);
+  const [values, setValues, handleChanges] = useForm(initialValue)
 
   const handleSubmit = (e) => {
     e.preventDefault();
